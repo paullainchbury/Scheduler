@@ -1,0 +1,103 @@
+<%= form_for(@course) do |f| %>
+  <% if @course.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@course.errors.count, "error") %> prohibited this course from being saved:</h2>
+
+      <ul>
+      <% @course.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <!--  Only want the classroom select to appear when this is a new form -->
+
+  <div class="field">
+  <label>Choose a classroom to host this course:</label><br>
+  <%= collection_select(:classroom, :classroom_id, Classroom.all, :id, :name) %>
+  </div>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :start %><br />
+    <%= f.date_select :start %>
+  </div>
+  <div class="field">
+    <%= f.label :endtime %><br />
+    <%= f.date_select :endtime %>
+  </div>
+
+  <h3> I only want to show the days which fall over the course duration!</h3>
+
+  <div class="field">
+    Monday<br />
+    <%= f.label :Mondaystart, "Start" %>
+    <%= f.number_field :Mondaystart, :include_blank => true %>:
+    <%= f.number_field :Mondaystartm, :include_blank => true %>
+    <%= f.label :Mondayend, "End" %>
+    <%= f.number_field :Mondayend, :include_blank => true %>:<%= f.number_field :Mondayendm, :include_blank => true %><br />
+  </div>
+
+  <div class="field">
+    Tuesday<br />
+    <%= f.label :Tuesdaystart, "Start" %>
+    <%= f.number_field :Tuesdaystart, :include_blank => true %>:
+    <%= f.number_field :Tuesdaystartm, :include_blank => true %>
+    <%= f.label :Tuesdayend, "End" %>
+    <%= f.number_field :Tuesdayend, :include_blank => true %>:<%= f.number_field :Tuesdayendm, :include_blank => true %><br />
+  </div>
+
+  <div class="field">
+    Wednesday<br />
+    <%= f.label :Wednesdaystart, "Start" %>
+    <%= f.number_field :Wednesdaystart, :include_blank => true %>:
+    <%= f.number_field :Wednesdaystartm, :include_blank => true %>
+    <%= f.label :Wednesdayend, "End" %>
+    <%= f.number_field :Wednesdayend, :include_blank => true %>:<%= f.number_field :Wednesdayendm, :include_blank => true %><br />
+  </div>
+
+  <div class="field">
+    Thursday<br />
+    <%= f.label :Thursdaystart, "Start" %>
+    <%= f.number_field :Thursdaystart, :include_blank => true %>:
+    <%= f.number_field :Thursdaystartm, :include_blank => true %>
+    <%= f.label :Thursdayend, "End" %>
+    <%= f.number_field :Thursdayend, :include_blank => true %>:<%= f.number_field :Thursdayendm, :include_blank => true %><br />
+  </div>
+
+  <div class="field">
+    Friday<br />
+    <%= f.label :Fridaystart, "Start" %>
+    <%= f.number_field :Fridaystart, :include_blank => true %>:
+    <%= f.number_field :Fridaystartm, :include_blank => true %>
+    <%= f.label :Fridayend, "End" %>
+    <%= f.number_field :Fridayend, :include_blank => true %>:<%= f.number_field :Fridayendm, :include_blank => true %><br />
+  </div>
+
+   <div class="field">
+    Saturday<br />
+    <%= f.label :Saturdaystart, "Start" %>
+    <%= f.number_field :Saturdaystart, :include_blank => true %>:
+    <%= f.number_field :Saturdaystartm, :include_blank => true %>
+    <%= f.label :Saturdayend, "End" %>
+    <%= f.number_field :Saturdayend, :include_blank => true %>:<%= f.number_field :Saturdayendm, :include_blank => true %><br />
+  </div>
+
+    <div class="field">
+    Sunday<br />
+    <%= f.label :Sundaystart, "Start" %>
+    <%= f.number_field :Sundaystart, :include_blank => true %>:
+    <%= f.number_field :Sundaystartm, :include_blank => true %>
+    <%= f.label :Sundayend, "End" %>
+    <%= f.number_field :Sundayend, :include_blank => true %>:<%= f.number_field :Sundayendm, :include_blank => true %><br />
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  course: MyString
+  start: 2014-02-03 09:33:27
+  end: 2014-02-03 09:33:27
+
+two:
+  course: MyString
+  start: 2014-02-03 09:33:27
+  end: 2014-02-03 09:33:27

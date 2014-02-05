@@ -10,6 +10,15 @@ Scheduler::Application.routes.draw do
 
   resources :bookings
 
+  get'/enrolment/:user_id', to: 'courses_users#new', as: :enrolment
+
+  post'/enrolment/:user_id', to: 'courses_users#create'
+
+  delete '/enrolment/:user_id', to: 'courses_users#destroy', as: :delete_enrolment
+
+
+  # new_courses_user GET    /courses_users/new(.:format)      courses_users#new
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -10,11 +10,46 @@
   <%= @user.email %>
 </p>
 
-<p>
-  <b>Password digest:</b>
-  <%= @user.password_digest %>
-</p>
+<%= link_to 'Sign up for a course', enrolment_path(@user) %>
 
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
+
+
+<%= link_to 'Edit user details', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
+
+<% if !@courses.blank? %>
+<h2>Courses enrolled on:</h2>
+
+<table>
+  <tr>
+    <td>Name</td>
+    <td>Start</td>
+    <td>End</td>
+    <td>Options</td>
+  </tr>
+
+<% @courses.each do |course| %>
+  
+  <tr>
+    <td><%= course.name %></td>
+    <td><% if course.start %>
+          <%= course.start.strftime("%d/%m/%y") %>
+        <% end %></td>
+    <td><% if course.endtime %>
+      <%= course.endtime.strftime("%d/%m/%y") %>
+        <% end %></td>
+        <td><%= link_to 'Delist for this course', delete_enrolment_path(@user, course_id: course.id), method: :delete, data: { confirm: 'Are you sure?' } %></td></td>
+    <% end %>
+    
+  </tr>
+</table>
+
+<h2>Upcoming classes</h2>
+list of upcoming bookings here
+<% end %>
+
+<br>
+
+
+

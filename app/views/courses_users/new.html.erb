@@ -1,0 +1,21 @@
+<h1>This is the new enrolment page</h1>
+
+OK <%= @user.name %>,
+
+<% if !@courses %>
+  They're aren't any courses available to enrol on yet! 
+<% else %>
+  <form action='/enrolment/<%= @user.id %>' method='post'>
+  choose an upcoming course to enrol on:
+  <%= collection_select(:course, :course_id, @courses, :id, :name) %>
+
+  <div class="actions">
+    <button>Submit</button>
+  </div>
+
+  </form>
+
+<% end %>
+
+
+

@@ -15,6 +15,8 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @courses = @user.courses
+    @bookings = Booking.where('bookings.start > ?', Time.zone.now).where(course_id: @user.course_ids).order(:start)
+    
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @user }

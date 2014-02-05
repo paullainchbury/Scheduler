@@ -46,7 +46,24 @@
 </table>
 
 <h2>Upcoming classes</h2>
-list of upcoming bookings here
+<table>
+  <tr>
+    <td>Class</td>
+    <td>Date</td>
+    <td>Start time</td>
+    <td>End time</td>
+  </tr>
+
+  <% @bookings.each do |booking| %>
+  <tr>
+    <td><%= Course.find(booking.course_id).name %></td>
+    <td><%= booking.start.strftime("%A, %d/%m/%y") %></td>
+    <td><%= booking.start.strftime("%I:%M %p") %></td>
+    <td><%= booking.endtime.strftime("%I:%M %p") %></td>
+  </tr>
+  <% end %>
+</table>
+
 <% end %>
 
 <br>

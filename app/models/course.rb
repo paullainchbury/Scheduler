@@ -5,7 +5,7 @@ class Course < ActiveRecord::Base
   has_many :courses_users
   has_many :users, through: :courses_users
 
-  validates_presence_of :start, :endtime
+  validates_presence_of :name, :start, :endtime
 
 
   # validate :classroom_is_available

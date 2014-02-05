@@ -6,8 +6,21 @@ OK <%= @user.name %>,
   They're aren't any courses available to enrol on yet! 
 <% else %>
   <form action='/enrolment/<%= @user.id %>' method='post'>
+    <% if @enrolment.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@enrolment.errors.count, "error") %> prohibited this course from being saved:</h2>
+
+        <ul>
+        <% @enrolment.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+
   choose an upcoming course to enrol on:
-  <%= collection_select(:course, :course_id, @courses, :id, :name) %>
+  <%= collection_select('course', :id, @courses, :id, :name) %>
 
   <div class="actions">
     <button>Submit</button>

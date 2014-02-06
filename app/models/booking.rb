@@ -12,7 +12,7 @@ class Booking < ActiveRecord::Base
   scope :for_classroom, lambda { |classroom| where(classroom_id: classroom) }
 
   scope :between, lambda { |from, to| 
-    where('bookings.start > ?', from).where('bookings.endtime < ?', to)
+    where('bookings.start < ? AND ? < bookings.endtime', to, from)
   }
 
 end

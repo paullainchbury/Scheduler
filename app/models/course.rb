@@ -103,20 +103,39 @@ class Course < ActiveRecord::Base
 
     if clashes.any?
 
-      # Here's where the book in alternative classroom needs to go!
+      if self.force_classroom != true
+        clashes.each do |clash|
+          error_string = "Classroom #{self.classroom.name} isn't available on:\n"
+          error_string += clash.start.strftime("%A - %d/%m/%y")
+          errors.add :course, error_string
+        end
+      end
 
-      # Get a list of available classrooms on the date of the clash
+      if self.force_classroom
+        clashfix = 0
+        no_of_clashes = clashes.count
+        other_classrooms = Classroom.where('id <> ?', self.classroom_id).order(:capacity).reverse_order
+        
+        clashes.each do |clash|
+          
+          other_classrooms.each do |classroom|
+            if Booking.for_classroom(classroom.id).between(clash.start, clash.endtime).empty?
+            clashfix +=1
+            clash.classroom_id = classroom.id
+            break
+            end
+          end
+        end
 
-      # Choose the room with the closest capacity to the preferred room.
+        if clashfix != no_of_clashes
+          error_string = "You can't book this course as there are no available classrooms for one or more of your class dates"
+          errors.add :course, error_string
+        end
 
-      # If force_classroom = true, book it.
-      binding.pry
 
 
-      clashes.each do |clash|
-        error_string = "Classroom #{self.classroom.name} isn't available on:\n"
-        error_string += clash.start.strftime("%A - %d/%m/%y")
-        errors.add :course, error_string
+        
+
       end
     end
   end

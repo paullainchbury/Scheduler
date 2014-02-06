@@ -12,7 +12,6 @@ class User < ActiveRecord::Base
 
   accepts_nested_attributes_for :courses_as_student, :courses_as_instructor
   
-
   
 
 

@@ -1,5 +1,4 @@
 class CoursesUsersController < ApplicationController
-  before_filter :authorize, :all
 
   def new
     @user = User.find(params[:user_id])
@@ -15,10 +14,9 @@ class CoursesUsersController < ApplicationController
 
 
     @enrolment = CoursesUser.new(user_id: @user.id, course_id: @course.id)
-binding.pry
     respond_to do |format|
       if @enrolment.save
-        format.html { redirect_to user_path(@user), notice: 'Enrolment successful' }
+        format.html { redirect_to current_user, notice: 'Enrolment successful' }
         # format.json { render json: @user, status: :created, location: @user }
       else
         format.html { render 'new' }

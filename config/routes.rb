@@ -12,7 +12,7 @@ Scheduler::Application.routes.draw do
 
   get'/enrolment/:user_id', to: 'courses_users#new', as: :enrolment
 
-  post'/enrolment/:user_id', to: 'courses_users#create'
+  post'/enrolment/:user_id', to: 'courses_users#create', as: :create_enrolment
 
   delete '/enrolment/:user_id', to: 'courses_users#destroy', as: :delete_enrolment
 

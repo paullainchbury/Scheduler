@@ -1,5 +1,5 @@
 class ClassroomsController < ApplicationController
-  before_filter :authorize, :all
+load_and_authorize_resource
   # GET /classrooms
   # GET /classrooms.json
   def index

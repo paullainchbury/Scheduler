@@ -1,5 +1,5 @@
 class BookingsController < ApplicationController
-before_filter :authorize, :all
+load_and_authorize_resource
   # GET /bookings
   # GET /bookings.json
   def index
@@ -36,6 +36,7 @@ before_filter :authorize, :all
   # GET /bookings/1/edit
   def edit
     @booking = Booking.find(params[:id])
+    unauthorized! if cannot? :update, @booking
   end
 
   # POST /bookings

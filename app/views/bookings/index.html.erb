@@ -17,12 +17,18 @@
     <td><%= booking.endtime.strftime("%A, %d/%m/%y - %I:%M %p") %></td>
     <td><%= booking.classroom.name if booking.classroom != nil %></td>
     <td><%= link_to 'Show', booking %></td>
+    <% if can? :update, @booking %>
     <td><%= link_to 'Edit', edit_booking_path(booking) %></td>
+    <% end %>
+    <% if can? :destroy, @booking %>
     <td><%= link_to 'Destroy', booking, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <% end %>
   </tr>
 <% end %>
 </table>
 
 <br />
 
+<% if can? :create, @booking %>
 <%= link_to 'New Booking', new_booking_path %>
+<% end %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140204093522) do
+ActiveRecord::Schema.define(:version => 20140206081334) do
 
   create_table "bookings", :force => true do |t|
     t.integer  "course_id"
@@ -63,6 +63,8 @@ ActiveRecord::Schema.define(:version => 20140204093522) do
     t.integer  "Sundaystartm"
     t.integer  "Sundayendm"
     t.datetime "endtime"
+    t.integer  "classroom_id"
+    t.boolean  "force_classroom"
   end
 
   create_table "courses_users", :force => true do |t|

@@ -1,3 +1,5 @@
+<p id="notice"><%= notice %></p>
+
 <%= form_for(@course) do |f| %>
   <% if @course.errors.any? %>
     <div id="error_explanation">
@@ -13,10 +15,12 @@
 
   <!--  Only want the classroom select to appear when this is a new form -->
 
-  <div class="field">
-  <label>Choose a classroom to host this course:</label><br>
-  <%= collection_select(:classroom, :classroom_id, Classroom.all, :id, :name) %>
-  </div>
+  <%= label_tag(:classroom, "Preferred classroom:") %>
+  <%= f.collection_select :classroom_id, Classroom.all, :id, :name %><br>
+
+  <%= f.label "Automatically book other classrooms if your preffered room is not available?" %>
+  <%= f.check_box :force_classroom %>
+
 
   <div class="field">
     <%= f.label :name %><br />

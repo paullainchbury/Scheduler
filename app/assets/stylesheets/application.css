@@ -8,6 +8,91 @@
  * You're free to add application-wide styles to this file and they'll appear at the top of the
  * compiled file, but it's generally better to create a new file per style scope.
  *
+ *= require foundation_and_overrides
  *= require_self
- *= require_tree .
+ 
  */
+
+ body {
+  background-color: white;
+  background-image: url('whiteboard.jpg');
+  background-repeat:no-repeat;
+  padding-bottom: 150px;
+  background-size: initial;
+}
+
+.name h1 a {
+  font-family: 'Permanent Marker', cursive;
+  font-size: 25px;
+  font-weight: 100;
+}
+
+h1, h2, h3, h4 {
+  color: black;
+  font-family: 'Permanent Marker', cursive;
+}
+
+.top-bar {
+  background-color: rgba(0,0,0,0.0)
+}
+
+.top-bar-section ul {
+  background-color: rgba(0,0,0,0.0)
+}
+
+.top-bar-section ul li.menu1 {
+  background-image: url('link_background.png');
+  background-size: cover;
+  background-position: bottom;
+  background-repeat: no-repeat;
+}
+
+.top-bar-section li {
+  font-family: 'Permanent Marker';
+}
+
+.top-bar img {
+  height: 60px;
+}
+
+.large-3 {
+background-color: rgba(255,255,255,0.8);
+padding-top: 25px; }
+
+.button {
+  -webkit-box-shadow: none;
+box-shadow: none;
+border-style: none;
+}
+
+.row {
+  max-width: 100%;
+}
+
+/*.right {
+  width: 25%;
+}*/
+
+.top-bar-section ul.right {
+background-color: rgba(255,255,255,0.8);
+min-width: 25%;
+}
+
+.content {
+  margin-top: 30px;
+  padding-top: 10px;
+  background-color: rgba(255,255,255,0.6);
+  padding-left: 35px;
+  padding-bottom: 50px;
+}
+
+.button {
+  background-image: url('link_background.png');
+  background-size: cover;
+  background-position: bottom;
+  background-repeat: no-repeat;
+}
+
+.select {
+  width: 10%;
+}

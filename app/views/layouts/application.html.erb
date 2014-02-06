@@ -1,30 +1,136 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <title>Scheduler</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-  <nav>
-    <%= link_to 'Users', users_path %>
-    <%= link_to 'Courses', courses_path %>
-    <%= link_to 'Classes', bookings_path %>
-    <% if current_user %>
-      Logged in as <%= current_user.email %>
-      <%= link_to 'Logout', logout_path %>
-    <% else %>
-      <%= link_to 'Sign up', signup_path %> or 
-      <%= link_to 'Login', login_path %>
-    <% end %>
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7 ]> <html class="ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]>    <html class="ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]>    <html class="ie8" lang="en"> <![endif]-->
+<!--[if IE 9 ]>    <html class="ie9" lang="en"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en"> <!--<![endif]-->
+  <head>
+  	<meta charset="utf-8" />
+      <link href='http://fonts.googleapis.com/css?family=Dancing+Script:700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Permanent+Marker' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Nothing+You+Could+Do' rel='stylesheet' type='text/css'>
+  	<!-- Uncomment to make IE8 render like IE7 -->
+  	<!-- <meta http-equiv="X-UA-Compatible" content="IE=7" /> -->
+
+  	<!-- Set the viewport width to device width for mobile -->
+  	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  	<title><%= content_for?(:title) ? yield(:title) : "Untitled" %></title>
+
+  	<%= stylesheet_link_tag    "application" %>
+  	<%= javascript_include_tag "vendor/custom.modernizr" %>
+    <%= csrf_meta_tags %>
+  </head>
+
+  <body>
+
+  <nav class="top-bar" data-topbar>
+    <ul class="title-area">
+      <li class="name">
+        <h1><a href="#"><img src='ga1.png'></a></h1>
+      </li>
+      <li class="toggle-topbar menu-icon">
+        <a href="#">Menu</a>
+      </li>
+    </ul>
+
+    <section class="top-bar-section">
+      <!-- Right Nav Section -->
+      <ul class="right">
+        <% if current_user %>
+        <li><a href="/logout">Logout &raquo;</a></li>
+        <% else %>
+        <li><a href="/login">Sign In &raquo;</a></li>
+        <% end %>
+
+
+
+
+          <div id="signin" class="f-dropdown small content" data-dropdown-content>
+            <form>
+                <label>Signin and schedule baby!</label>
+                <input type="text" placeholder="Your email address" />
+                <input type="text" placeholder="password" /><br>
+             
+          </form>
+          </div>
+      </ul>
+
+      <!-- Left Nav Section -->
+      <ul class="left">
+        <% if can? :manage, @classroom %>
+        <li class="menu1"><%= link_to 'Classrooms', classrooms_path %></li>
+        <% end %>
+        <li class="menu1"><%= link_to 'Courses', courses_path %></li>
+        <% if can? :manage, @booking %>
+        <li class="menu1"><%= link_to 'Classes', bookings_path %></li>
+        <% end %>
+        <% if current_user && current_user.admin? %>
+        <li class="menu1"><%= link_to 'Manage Users', users_path %></li>
+        <% end %>
+        <% if current_user %>
+        <li class="menu1"><%= link_to 'My profile', user_path(current_user) %></li>
+        <% end %>
+      </ul>
+    </section>
   </nav>
 
-  <% flash.each do |name, msg| %>
-  <%= content_tag :div, msg, :id => "flash_#{name}" %>
-  <% end %>
 
-  <%= yield %>
 
-</body>
+
+
+
+
+      <div class='row'>
+        <div class='large-9 columns'>
+          <% flash.each do |name, msg| %>
+          <div class="flash-message flash-message-<%= name %>">
+            <%= msg %>
+          </div>
+          <% end %>
+          <div class='large-6-columns content'>
+          <%= yield %>
+          </div>
+        </div>
+
+
+
+        <div class='large-3 columns'>
+          <% if current_user %>
+          <p>Hello <%=current_user.email %></p>
+          <% end %>
+
+          <ul class="side-nav">
+            <% if can? :manage, @course %>
+            <li><%= link_to 'Add a course', new_course_path %></li>
+            <% end %>
+            <% if can? :manage, @classroom %>
+            <li><%= link_to 'Add a classroom', new_classroom_path %></li>
+            <% end %>
+            <li><%= link_to 'View upcoming courses', courses_path %></li>
+            <% if !current_user %>
+            <li><%= link_to 'Sign up', signup_path %></li>
+            <% end %>
+            
+          </ul>
+          <h2>About Us</h2>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Certa quaedam. Utamur vidit dolorum bonorum democritus cum loqui alteram laudantium graeca, diogenem horribiles inhumanus inter viderer occulte studuisse ornamenta putas desiderabile, modis sis phaedrum, malorum repetitis utrisque quem arbitratu nostro sumitur aristotelem explicari.</p>
+        
+
+        </div>
+
+
+
+      </div>
+
+      
+
+
+
+      
+
+      
+      <%= javascript_include_tag "application" %>
+  </body>
 </html>

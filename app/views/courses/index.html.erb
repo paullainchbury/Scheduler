@@ -5,7 +5,7 @@
     <th>Name</th>
     <th>Start Date</th>
     <th>End Date</th>
-    <th></th>
+    <th>Instructor</th>
   </tr>
 
 <% @courses.each do |course| %>
@@ -17,7 +17,10 @@
     <td><% if course.endtime %>
       <%= course.endtime.strftime("%d/%m/%y") %>
     <% end %></td>
-    <td><%= link_to 'Show', course %></td>
+    <td><% course.instructors.each do |instructor| %>
+      <%= instructor.name %>
+      <% end %></td>
+      <td><%= link_to 'Show', course %></td>
     <td><%= link_to 'Edit', edit_course_path(course) %></td>
     <td><%= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>

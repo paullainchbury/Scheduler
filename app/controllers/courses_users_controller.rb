@@ -1,4 +1,5 @@
 class CoursesUsersController < ApplicationController
+  before_filter :authorize, :all
 
   def new
     @user = User.find(params[:user_id])
@@ -7,14 +8,14 @@ class CoursesUsersController < ApplicationController
   end
 
   def create
-    user_type = params[:usertype] || 'student'
     @user = User.find(params[:user_id])
+
     @course = Course.find(params[:course][:id])
     @courses = Course.coming_up
 
 
-    @enrolment = CoursesUser.new(user_id: @user.id, course_id: @course.id, user_type: user_type)
-
+    @enrolment = CoursesUser.new(user_id: @user.id, course_id: @course.id)
+binding.pry
     respond_to do |format|
       if @enrolment.save
         format.html { redirect_to user_path(@user), notice: 'Enrolment successful' }

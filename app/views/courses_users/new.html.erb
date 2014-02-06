@@ -2,7 +2,7 @@
 
 OK <%= @user.name %>,
 
-<% if !@courses %>
+<% if @courses.blank? %>
   They're aren't any courses available to enrol on yet! 
 <% else %>
   <form action='/enrolment/<%= @user.id %>' method='post'>

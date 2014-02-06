@@ -1,14 +1,14 @@
 Scheduler::Application.routes.draw do
+  
+    get'signup', to: 'users#new', as: 'signup'
+    get'login', to: 'sessions#new', as: 'login'
+    get'logout', to: 'sessions#destroy', as: 'logout'
+
   resources :users
-
-
   resources :classrooms
-
-
   resources :courses
-
-
   resources :bookings
+  resources :sessions
 
   get'/enrolment/:user_id', to: 'courses_users#new', as: :enrolment
 
@@ -16,6 +16,7 @@ Scheduler::Application.routes.draw do
 
   delete '/enrolment/:user_id', to: 'courses_users#destroy', as: :delete_enrolment
 
+  root to: 'courses#index'
 
   # new_courses_user GET    /courses_users/new(.:format)      courses_users#new
 

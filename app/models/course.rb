@@ -1,6 +1,6 @@
 class Course < ActiveRecord::Base
 
-  attr_accessible :name, :start, :endtime, :Mondaystart, :Mondayend, :Tuesdaystart, :Tuesdayend, :Wednesdaystart, :Wednesdayend, :Thursdaystart, :Thursdayend, :Fridaystart, :Fridayend, :Saturdaystart, :Saturdayend, :Sundaystart, :Sundayend, :Mondaystartm, :Mondayendm, :Tuesdaystartm, :Tuesdayendm, :Wednesdaystartm, :Wednesdayendm, :Thursdaystartm, :Thursdayendm, :Fridaystartm, :Fridayendm, :Saturdaystartm, :Saturdayendm, :Sundaystartm, :Sundayendm, :classroom_id, :force_classroom
+  attr_accessible :name, :start, :endtime, :Mondaystart, :Mondayend, :Tuesdaystart, :Tuesdayend, :Wednesdaystart, :Wednesdayend, :Thursdaystart, :Thursdayend, :Fridaystart, :Fridayend, :Saturdaystart, :Saturdayend, :Sundaystart, :Sundayend, :Mondaystartm, :Mondayendm, :Tuesdaystartm, :Tuesdayendm, :Wednesdaystartm, :Wednesdayendm, :Thursdaystartm, :Thursdayendm, :Fridaystartm, :Fridayendm, :Saturdaystartm, :Saturdayendm, :Sundaystartm, :Sundayendm, :classroom_id, :force_classroom, :courses_instructors_attributes, :instructor_ids
 
   attr_accessor :thebookings
 
@@ -10,6 +10,8 @@ class Course < ActiveRecord::Base
   has_many :students, through: :courses_users, source: :user
   has_many :instructors, through: :courses_instructors, source: :user
   belongs_to :classroom
+
+  accepts_nested_attributes_for :courses_instructors
 
   before_validation :create_bookings_for_course
   validates_presence_of :name, :start, :endtime

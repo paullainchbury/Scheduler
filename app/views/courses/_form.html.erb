@@ -19,7 +19,10 @@
   <%= f.collection_select :classroom_id, Classroom.all, :id, :name %><br>
 
   <%= f.label "Automatically book other classrooms if your preffered room is not available?" %>
-  <%= f.check_box :force_classroom %>
+  <%= f.check_box :force_classroom %><br>
+
+  <%= label_tag(:instructor_ids, "Instructor:") %>
+  <%= f.collection_select(:instructor_ids, User.all(:order => 'name'), :id, :name, { :prompt => 'Select Instructor' } ) %><br>
 
 
   <div class="field">

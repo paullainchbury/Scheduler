@@ -17,6 +17,7 @@ class CoursesController < ApplicationController
 
   def new
     @course = Course.new
+    @intructor = CoursesInstructor.new
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @course }

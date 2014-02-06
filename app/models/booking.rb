@@ -7,7 +7,7 @@ class Booking < ActiveRecord::Base
 
   scope :for_course, lambda { |course| where(course_id: course) }
 
-  scope :for_student, lambda { |user| where(course_id: user.course_ids).order(:start) }
+  scope :for_student, lambda { |user| where(course_id: user.courses_as_student).order(:start) }
 
   scope :for_classroom, lambda { |classroom| where(classroom_id: classroom) }
 

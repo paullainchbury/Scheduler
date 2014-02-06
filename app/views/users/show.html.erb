@@ -12,7 +12,63 @@
 
 <%= link_to 'Sign up for a course', enrolment_path(@user) %>
 
+<% if !@courses_as_instructor.blank? %>
+<h2>Courses you're instructing:</h2>
 
+<table>
+  <tr>
+    <td>Name</td>
+    <td>Start</td>
+    <td>End</td>
+  </tr>
+
+<% @courses_as_instructor.each do |course| %>
+  
+  <tr>
+    <td><%= course.name %></td>
+    <td><% if course.start %>
+          <%= course.start.strftime("%d/%m/%y") %>
+        <% end %></td>
+    <td><% if course.endtime %>
+      <%= course.endtime.strftime("%d/%m/%y") %>
+        <% end %></td>
+    <% end %>
+    
+  </tr>
+</table>
+
+<h2>Upcoming classes you're instructing: </h2>
+<table>
+  <tr>
+    <td>Class</td>
+    <td>Date</td>
+    <td>Start time</td>
+    <td>End time</td>
+    <td>Classroom</td>
+  </tr>
+
+  <% @classes_as_instructor.each do |booking| %>
+  <tr>
+    <td><%= Course.find(booking.course_id).name %></td>
+    <td><%= booking.start.strftime("%A, %d/%m/%y") %></td>
+    <td><%= booking.start.strftime("%I:%M %p") %></td>
+    <td><%= booking.endtime.strftime("%I:%M %p") %></td>
+    <td><%= Classroom.find(booking.classroom_id).name %></td>
+  </tr>
+  <% end %>
+</table>
+
+<% end %>
+
+
+
+
+
+
+
+
+
+<!-- ------------------------------ -->
 
 
 <%= link_to 'Edit user details', edit_user_path(@user) %> |
@@ -45,13 +101,14 @@
   </tr>
 </table>
 
-<h2>Upcoming classes</h2>
+<h2>Upcoming classes you're taking</h2>
 <table>
   <tr>
     <td>Class</td>
     <td>Date</td>
     <td>Start time</td>
     <td>End time</td>
+    <td>Classroom</td>
   </tr>
 
   <% @bookings.each do |booking| %>
@@ -60,6 +117,7 @@
     <td><%= booking.start.strftime("%A, %d/%m/%y") %></td>
     <td><%= booking.start.strftime("%I:%M %p") %></td>
     <td><%= booking.endtime.strftime("%I:%M %p") %></td>
+    <td><%= Classroom.find(booking.classroom_id).name %></td>
   </tr>
   <% end %>
 </table>

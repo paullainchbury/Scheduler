@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  # GET /users
-  # GET /users.json
+  before_filter :authorize, only: [:edit, :show, :index, :destroy]
+
   def index
     @users = User.all
 
@@ -14,8 +14,10 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     @user = User.find(params[:id])
-    @courses = @user.courses
-    @bookings = Booking.where('bookings.start > ?', Time.zone.now).where(course_id: @user.course_ids).order(:start)
+    @courses = @user.courses_as_student
+    @courses_as_instructor = @user.courses_as_instructor
+    @bookings = Booking.where('bookings.start > ?', Time.zone.now).where(course_id: @user.courses_as_student).order(:start)
+    @classes_as_instructor = Booking.where('bookings.start > ?', Time.zone.now).where(course_id: @user.courses_as_instructor).order(:start)
     
     respond_to do |format|
       format.html # show.html.erb
@@ -46,7 +48,8 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
+        session[:user_id] = @user.id
+        format.html { redirect_to @user, notice: 'Thanks for signing up!' }
         format.json { render json: @user, status: :created, location: @user }
       else
         format.html { render action: "new" }

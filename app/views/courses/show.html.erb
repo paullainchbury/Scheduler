@@ -5,6 +5,69 @@
   <%= @course.name %>
 </p>
 
+<% if @course.start == @course.endtime %>
+  
+<%=@course.start.strftime("%A,  %d/%m/%y")%><br>
+<table>
+<tr>
+  <td>Start time</td>
+  <td>End time</td>
+  <td>Classroom</td>
+  <td>Instructor/s</td>
+</tr>
+<tr>
+    <td><%= @course.bookings.first.start.strftime("%I:%M %p")%></td>
+    <td><%= @course.bookings.first.endtime.strftime("%I:%M %p")%></td>
+    <td><%= Classroom.find(@course.bookings.first.classroom_id).name %></td>
+    <td></td>
+  </tr>
+</table>
+  
+<% else %>
+
+
+
+
+
+<p>
+  <b>Start Date:</b>
+  <%= @course.start.strftime("%A,  %d/%m/%y") %>
+</p>
+
+<p>
+  <b>End Date:</b>
+  <%= @course.endtime.strftime("%A,  %d/%m/%y") %>
+</p>
+
+<h3>There are <%= @course.bookings.count %> classes for this course:</h3>
+
+<table>
+<tr>
+  <td>Date</td>
+  <td>Start time</td>
+  <td>End time</td>
+  <td>Classroom</td>
+  <td>Instructor/s</td>
+
+</tr>
+<% @course.bookings.coming_up.each do |booking| %>
+<tr>
+<td><%= booking.start.strftime("%A %d/%m/%y")%></td>
+<td><%= booking.start.strftime("%I:%M %p")%></td><td><%= booking.endtime.strftime("%I:%M %p")%></td>
+<td><%= Classroom.find(booking.classroom_id).name %></td>
+</tr>
+
+<% end %>
+
+</table>
+
+
+
+
+<% end %>
+
+
+
 
 <%= link_to 'Edit', edit_course_path(@course) %> |
 <%= link_to 'Back', courses_path %>

@@ -6,7 +6,9 @@ class Course < ActiveRecord::Base
 
   has_many :bookings
   has_many :courses_users
-  has_many :users, through: :courses_users
+  has_many :courses_instructors
+  has_many :students, through: :courses_users, source: :user
+  has_many :instructors, through: :courses_instructors, source: :user
   belongs_to :classroom
 
   before_validation :create_bookings_for_course
@@ -14,6 +16,8 @@ class Course < ActiveRecord::Base
   validate :classroom_available
 
   scope :coming_up, lambda { where('courses.start > ?', Time.zone.now) }
+
+  # scope :max_capacity 
   
   def create_bookings_for_course
     @thebookings = []

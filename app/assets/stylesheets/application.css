@@ -85,14 +85,3 @@ min-width: 25%;
   padding-left: 35px;
   padding-bottom: 50px;
 }
-
-.button {
-  background-image: url('link_background.png');
-  background-size: cover;
-  background-position: bottom;
-  background-repeat: no-repeat;
-}
-
-.select {
-  width: 10%;
-}

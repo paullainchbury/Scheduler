@@ -2,7 +2,7 @@
 
 <%= form_for(@course) do |f| %>
 <div class="row">
-    <div class="large-6 columns">
+  <div class="large-4 columns">
   <% if @course.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@course.errors.count, "error") %> prohibited this course from being saved:</h2>
@@ -15,93 +15,215 @@
     </div>
   <% end %>
 
-  <!--  Only want the classroom select to appear when this is a new form -->
-  <%= label_tag(:classroom, "Preferred classroom:") %><%= f.collection_select :classroom_id, Classroom.all, :id, :name %><%= f.label "Automatically book other classrooms if your preffered room is not available?" %><%= f.check_box :force_classroom %>
+  <%= label_tag(:classroom, "Classroom:") %><%= f.collection_select :classroom_id, Classroom.all, :id, :name %><%= f.label "Automatically book other classrooms if this room is not available?" %><%= f.check_box :force_classroom %>
+  
+
+  <%= label_tag(:instructor_ids, "Instructor:") %>
+  <%= f.collection_select(:instructor_ids, User.all(:order => 'name'), :id, :name, { :prompt => 'Select Instructor' } ) %>
+
   </div>
 </div>
 
-  <%= label_tag(:instructor_ids, "Instructor:") %>
-  <%= f.collection_select(:instructor_ids, User.all(:order => 'name'), :id, :name, { :prompt => 'Select Instructor' } ) %><br>
 
 
-  <div class="field">
-    <%= f.label :name %><br />
+<div class="row">
+  <div class="large-6 columns">
+    <%= f.label :name %>
     <%= f.text_field :name %>
-  </div>
-
-  <div class="field">
-    <%= f.label :start %><br />
+  
+    <%= f.label :start %>
     <%= f.date_select :start %>
-  </div>
-  <div class="field">
-    <%= f.label :endtime %><br />
+  
+    <%= f.label :endtime %>
     <%= f.date_select :endtime %>
   </div>
+</div>
 
-  <h3> I only want to show the days which fall over the course duration!</h3>
+<h3> I only want to show the days which fall over the course duration!</h3>
 
-  <div class="field">
-    Monday<br />
-    <%= f.label :Mondaystart, "Start" %>
-    <%= f.number_field :Mondaystart, :include_blank => true %>:
-    <%= f.number_field :Mondaystartm, :include_blank => true %>
-    <%= f.label :Mondayend, "End" %>
-    <%= f.number_field :Mondayend, :include_blank => true %>:<%= f.number_field :Mondayendm, :include_blank => true %><br />
+<!-- Start time -->
+
+
+<div class="row">
+  <div class="small-6 columns">
+  <h4>Monday</h4>
+
+  <div class="row">
+    <div class="small-3 columns">
+      <%= f.label :Mondaystart, "Start (h)" %>
+      <%= f.number_field :Mondaystart, :include_blank => true %>
+    </div>
+
+    <div class="small-3 columns">
+      <%= f.label :Mondaystartm, "(m)" %>
+      <%= f.number_field :Mondaystartm, :include_blank => true %>
+    </div>
+
+     <div class="small-3 columns">
+      <%= f.label :Mondayend, "End (h)" %>
+      <%= f.number_field :Mondayend, :include_blank => true %>
+    </div>
+
+    <div class="small-3 columns">
+      <%= f.label :Mondayendm, "(m)" %>
+      <%= f.number_field :Mondayendm, :include_blank => true %>
+    </div>
   </div>
 
-  <div class="field">
-    Tuesday<br />
-    <%= f.label :Tuesdaystart, "Start" %>
-    <%= f.number_field :Tuesdaystart, :include_blank => true %>:
-    <%= f.number_field :Tuesdaystartm, :include_blank => true %>
-    <%= f.label :Tuesdayend, "End" %>
-    <%= f.number_field :Tuesdayend, :include_blank => true %>:<%= f.number_field :Tuesdayendm, :include_blank => true %><br />
+<h4>Tuesday</h4>
+  <div class="row">
+    <div class="small-3 columns">
+      <%= f.label :Tuesdaystart, "Start (h)" %>
+      <%= f.number_field :Tuesdaystart, :include_blank => true %>
+    </div>
+
+    <div class="small-3 columns">
+      <%= f.label :Tuesdaystartm, "(m)" %>
+      <%= f.number_field :Tuesdaystartm, :include_blank => true %>
+    </div>
+
+     <div class="small-3 columns">
+      <%= f.label :Tuesdayend, "End (h)" %>
+      <%= f.number_field :Tuesdayend, :include_blank => true %>
+    </div>
+
+    <div class="small-3 columns">
+      <%= f.label :Tuesdayendm, "(m)" %>
+      <%= f.number_field :Tuesdayendm, :include_blank => true %>
+    </div>
   </div>
 
-  <div class="field">
-    Wednesday<br />
-    <%= f.label :Wednesdaystart, "Start" %>
-    <%= f.number_field :Wednesdaystart, :include_blank => true %>:
-    <%= f.number_field :Wednesdaystartm, :include_blank => true %>
-    <%= f.label :Wednesdayend, "End" %>
-    <%= f.number_field :Wednesdayend, :include_blank => true %>:<%= f.number_field :Wednesdayendm, :include_blank => true %><br />
+  <h4>Wednesday</h4>
+  <div class="row">
+    <div class="small-3 columns">
+      <%= f.label :Wednesdaystart, "Start (h)" %>
+      <%= f.number_field :Wednesdaystart, :include_blank => true %>
+    </div>
+
+    <div class="small-3 columns">
+      <%= f.label :Wednesdaystartm, "(m)" %>
+      <%= f.number_field :Wednesdaystartm, :include_blank => true %>
+    </div>
+
+     <div class="small-3 columns">
+      <%= f.label :Wednesdayend, "End (h)" %>
+      <%= f.number_field :Wednesdayend, :include_blank => true %>
+    </div>
+
+    <div class="small-3 columns">
+      <%= f.label :Wednesdayendm, "(m)" %>
+      <%= f.number_field :Wednesdayendm, :include_blank => true %>
+    </div>
   </div>
 
-  <div class="field">
-    Thursday<br />
-    <%= f.label :Thursdaystart, "Start" %>
-    <%= f.number_field :Thursdaystart, :include_blank => true %>:
-    <%= f.number_field :Thursdaystartm, :include_blank => true %>
-    <%= f.label :Thursdayend, "End" %>
-    <%= f.number_field :Thursdayend, :include_blank => true %>:<%= f.number_field :Thursdayendm, :include_blank => true %><br />
+  <h4>Thursday</h4>
+  <div class="row">
+    <div class="small-3 columns">
+      <%= f.label :Thursdaystart, "Start (h)" %>
+      <%= f.number_field :Thursdaystart, :include_blank => true %>
+    </div>
+
+    <div class="small-3 columns">
+      <%= f.label :Thursdaystartm, "(m)" %>
+      <%= f.number_field :Thursdaystartm, :include_blank => true %>
+    </div>
+
+     <div class="small-3 columns">
+      <%= f.label :Thursdayend, "End (h)" %>
+      <%= f.number_field :Thursdayend, :include_blank => true %>
+    </div>
+
+    <div class="small-3 columns">
+      <%= f.label :Thursdayendm, "(m)" %>
+      <%= f.number_field :Thursdayendm, :include_blank => true %>
+    </div>
   </div>
 
-  <div class="field">
-    Friday<br />
-    <%= f.label :Fridaystart, "Start" %>
-    <%= f.number_field :Fridaystart, :include_blank => true %>:
-    <%= f.number_field :Fridaystartm, :include_blank => true %>
-    <%= f.label :Fridayend, "End" %>
-    <%= f.number_field :Fridayend, :include_blank => true %>:<%= f.number_field :Fridayendm, :include_blank => true %><br />
+  <h4>Friday</h4>
+  <div class="row">
+    <div class="small-3 columns">
+      <%= f.label :Fridaystart, "Start (h)" %>
+      <%= f.number_field :Fridaystart, :include_blank => true %>
+    </div>
+
+    <div class="small-3 columns">
+      <%= f.label :Fridaystartm, "(m)" %>
+      <%= f.number_field :Fridaystartm, :include_blank => true %>
+    </div>
+
+     <div class="small-3 columns">
+      <%= f.label :Fridayend, "End (h)" %>
+      <%= f.number_field :Fridayend, :include_blank => true %>
+    </div>
+
+    <div class="small-3 columns">
+      <%= f.label :Fridayendm, "(m)" %>
+      <%= f.number_field :Fridayendm, :include_blank => true %>
+    </div>
   </div>
 
-   <div class="field">
-    Saturday<br />
-    <%= f.label :Saturdaystart, "Start" %>
-    <%= f.number_field :Saturdaystart, :include_blank => true %>:
-    <%= f.number_field :Saturdaystartm, :include_blank => true %>
-    <%= f.label :Saturdayend, "End" %>
-    <%= f.number_field :Saturdayend, :include_blank => true %>:<%= f.number_field :Saturdayendm, :include_blank => true %><br />
+<h4>Saturday</h4>
+  <div class="row">
+    <div class="small-3 columns">
+      <%= f.label :Saturdaystart, "Start (h)" %>
+      <%= f.number_field :Saturdaystart, :include_blank => true %>
+    </div>
+
+    <div class="small-3 columns">
+      <%= f.label :Saturdaystartm, "(m)" %>
+      <%= f.number_field :Saturdaystartm, :include_blank => true %>
+    </div>
+
+     <div class="small-3 columns">
+      <%= f.label :Saturdayend, "End (h)" %>
+      <%= f.number_field :Saturdayend, :include_blank => true %>
+    </div>
+
+    <div class="small-3 columns">
+      <%= f.label :Saturdayendm, "(m)" %>
+      <%= f.number_field :Saturdayendm, :include_blank => true %>
+    </div>
   </div>
 
-    <div class="field">
-    Sunday<br />
-    <%= f.label :Sundaystart, "Start" %>
-    <%= f.number_field :Sundaystart, :include_blank => true %>:
-    <%= f.number_field :Sundaystartm, :include_blank => true %>
-    <%= f.label :Sundayend, "End" %>
-    <%= f.number_field :Sundayend, :include_blank => true %>:<%= f.number_field :Sundayendm, :include_blank => true %><br />
+<h4>Sunday</h4>
+  <div class="row">
+    <div class="small-3 columns">
+      <%= f.label :Sundaystart, "Start (h)" %>
+      <%= f.number_field :Sundaystart, :include_blank => true %>
+    </div>
+
+    <div class="small-3 columns">
+      <%= f.label :Sundaystartm, "(m)" %>
+      <%= f.number_field :Sundaystartm, :include_blank => true %>
+    </div>
+
+     <div class="small-3 columns">
+      <%= f.label :Sundayend, "End (h)" %>
+      <%= f.number_field :Sundayend, :include_blank => true %>
+    </div>
+
+    <div class="small-3 columns">
+      <%= f.label :Sundayendm, "(m)" %>
+      <%= f.number_field :Sundayendm, :include_blank => true %>
+    </div>
   </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+</div>
+
 
   <div class="actions">
     <%= f.submit %>

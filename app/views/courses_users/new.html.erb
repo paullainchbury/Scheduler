@@ -1,9 +1,7 @@
-<h1>This is the new enrolment page</h1>
-
-OK <%= @user.name %>,
+<h1>Let us fill your head with stuff! </h1>
 
 <% if @courses.blank? %>
-  They're aren't any courses available to enrol on yet! 
+  How embarassing! They're aren't any courses to enrol on yet. :(
 <% else %>
   <%= form_tag create_enrolment_path(@user), method: :post do %>
     <% if @enrolment.errors.any? %>
@@ -18,13 +16,17 @@ OK <%= @user.name %>,
       </div>
     <% end %>
 
-
-    choose an upcoming course to enrol on:
+<div class="row">
+    <div class="large-4 columns">
+      Which course do you fancy?
     <%= collection_select('course', :id, @courses, :id, :name) %>
 
     <div class="actions">
       <button>Submit</button>
     </div>
+
+  </div>
+</div>
 
   <% end %>
 <% end %>

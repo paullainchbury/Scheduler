@@ -21,8 +21,11 @@
       <%= instructor.name %>
       <% end %></td>
       <td><%= link_to 'Show', course %></td>
+      <% if can? :update, @course %>
     <td><%= link_to 'Edit', edit_course_path(course) %></td>
-    <td><%= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <% end %>
+    <% if can? :destroy, @course %>
+    <td><%= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' } %></td><% end %>
   </tr>
 <% end %>
 </table>

@@ -3,7 +3,7 @@ load_and_authorize_resource
   # GET /bookings
   # GET /bookings.json
   def index
-    @bookings = Booking.all
+    @bookings = Booking.all.sort_by(&:start)
 
     respond_to do |format|
       format.html # index.html.erb

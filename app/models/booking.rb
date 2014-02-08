@@ -9,6 +9,8 @@ class Booking < ActiveRecord::Base
 
   scope :for_student, lambda { |user| where(course_id: user.courses_as_student).order(:start) }
 
+  scope :for_instructor, lambda { |user| where(course_id: user.courses_as_instructor).order(:start) }
+
   scope :for_classroom, lambda { |classroom| where(classroom_id: classroom) }
 
   scope :between, lambda { |from, to| 

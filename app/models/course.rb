@@ -16,6 +16,7 @@ class Course < ActiveRecord::Base
   before_validation :create_bookings_for_course
   validates_presence_of :name, :start, :endtime
   validate :classroom_available
+  validate :instructor_available
 
   scope :coming_up, lambda { where('courses.start > ?', Time.zone.now) }
 
@@ -146,7 +147,42 @@ class Course < ActiveRecord::Base
     end
   end
 
-  
+  # ---------------
+
+def instructor_available
+    clashes = []
+    
+    
+    if self.instructors.any?
+    instructor_bookings = Booking.for_student(self.instructors.first).where('bookings.start > ?', self.start.beginning_of_day).where('bookings.start < ?', self.endtime.end_of_day) + Booking.for_instructor(self.instructors.first).where('bookings.start > ?', self.start.beginning_of_day).where('bookings.start < ?', self.endtime.end_of_day)
+
+    if !instructor_bookings.blank?
+        instructor_bookings.each do |existing_booking|
+        @thebookings.each do |new_booking|
+          if (existing_booking.start < new_booking.endtime && new_booking.start < existing_booking.endtime)
+            clashes << new_booking
+          end  
+        end
+      end
+    end
+  end
+
+
+
+  if clashes.any?
+    # binding.pry
+    clashes = clashes.uniq
+    clashes.each do |clash|
+      starttime = clash.start.strftime("%I:%M %p")
+      endtime = clash.endtime.strftime("%I:%M %p")
+      clashdate = clash.start.strftime("%A, ")
+      clashdate += clash.start.day.ordinalize
+      clashdate += clash.start.strftime(" of %B")
+      errors.add :course, "#{self.instructors.first.name} is not available between #{starttime} and #{endtime} on the #{clashdate}"
+    end
+  end
+
+  end
 
   
 

@@ -3,7 +3,7 @@ class Booking < ActiveRecord::Base
   belongs_to :course
   belongs_to :classroom
 
-  scope :coming_up, lambda { where('bookings.start > ?', Time.zone.now) }
+  scope :coming_up, lambda { where('bookings.start >= ?', Time.zone.now.beginning_of_day) }
 
   scope :for_course, lambda { |course| where(course_id: course) }
 

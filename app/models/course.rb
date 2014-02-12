@@ -4,9 +4,10 @@ class Course < ActiveRecord::Base
 
   attr_accessor :thebookings
 
-  has_many :bookings
-  has_many :courses_users
-  has_many :courses_instructors
+  has_many :bookings, :dependent => :destroy
+  # Would be good to send signed up users an email when a course is cancelled.
+  has_many :courses_users, :dependent => :destroy 
+  has_many :courses_instructors, :dependent => :destroy
   has_many :students, through: :courses_users, source: :user
   has_many :instructors, through: :courses_instructors, source: :user
   belongs_to :classroom
@@ -19,10 +20,12 @@ class Course < ActiveRecord::Base
   validate :instructor_available
 
   scope :coming_up, lambda { where('courses.start > ?', Time.zone.now) }
-
-  # scope :max_capacity 
   
   def create_bookings_for_course
+
+    # Destroy existing bookings for this course.
+    Booking.for_course(self.id).destroy_all
+
     @thebookings = []
 
     start1 = self.start.beginning_of_day

@@ -33,7 +33,6 @@ class CoursesController < ApplicationController
     
     @course = Course.new(params[:course])
     if @course.save
-      # raise @course.bookings.inspect
       redirect_to @course, notice: 'Course was successfully created.'
     else
      render action: "new"

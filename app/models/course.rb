@@ -24,7 +24,10 @@ class Course < ActiveRecord::Base
   def create_bookings_for_course
 
     # Destroy existing bookings for this course.
+    # Is this going to delete all the bookings even if the new ones aren't saved??
     Booking.for_course(self.id).destroy_all
+
+
 
     @thebookings = []
 

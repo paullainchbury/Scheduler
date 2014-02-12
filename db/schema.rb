@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140206172553) do
+ActiveRecord::Schema.define(:version => 20140212081346) do
 
   create_table "bookings", :force => true do |t|
     t.integer  "course_id"
@@ -65,6 +65,7 @@ ActiveRecord::Schema.define(:version => 20140206172553) do
     t.datetime "endtime"
     t.integer  "classroom_id"
     t.boolean  "force_classroom"
+    t.integer  "capacity"
   end
 
   create_table "courses_instructors", :force => true do |t|

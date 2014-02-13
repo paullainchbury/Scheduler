@@ -18,17 +18,14 @@ class Course < ActiveRecord::Base
   validates_presence_of :name, :start, :endtime
   validate :classroom_available
   validate :instructor_available
+  validate :has_spare_capacity
 
   scope :coming_up, lambda { where('courses.start > ?', Time.zone.now) }
   
   def create_bookings_for_course
 
     # Destroy existing bookings for this course.
-    # Is this going to delete all the bookings even if the new ones aren't saved??
     Booking.for_course(self.id).destroy_all
-
-
-
     @thebookings = []
 
     start1 = self.start.beginning_of_day
@@ -36,6 +33,7 @@ class Course < ActiveRecord::Base
 
     date_range = (start1.to_i..end1.to_i).step(1.day)
 
+    # Can be deleted?
     thebookings = []
 
     date_range.each do |date_as_i|
@@ -100,6 +98,15 @@ class Course < ActiveRecord::Base
       end
     end
   end
+
+  def has_spare_capacity
+    binding.pry
+    # Get array of unique classroom ids from the bookings
+    # Client.select(:name).distinct
+
+    # Get the LOWEST capacity from the array of classrooms
+  end
+
 
   def classroom_available
     clashes = []

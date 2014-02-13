@@ -6,6 +6,7 @@
     <th>Start Date</th>
     <th>End Date</th>
     <th>Instructor</th>
+    <th>Capacity<th>
   </tr>
 
 <% @courses.each do |course| %>
@@ -20,6 +21,7 @@
     <td><% course.instructors.each do |instructor| %>
       <%= instructor.name %>
       <% end %></td>
+      <td><%= course.capacity %></td>
       <td><%= link_to 'Show', course %></td>
       <% if can? :update, @course %>
     <td><%= link_to 'Edit', edit_course_path(course) %></td>

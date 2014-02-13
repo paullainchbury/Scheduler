@@ -33,10 +33,10 @@ h1, h2, h3, h4 {
   font-family: 'Permanent Marker', cursive;
 }
 
-.top-bar {
+/*.top-bar {
   background-color: rgba(0,0,0,0.0);
   height: 65px;
-}
+}*/
 
 .top-bar-section ul {
   background-color: rgba(0,0,0,0.0)
@@ -54,7 +54,7 @@ h1, h2, h3, h4 {
 }
 
 .top-bar img {
-  height: 60px;
+  height: 55px;
 }
 
 .large-3 {
@@ -84,6 +84,15 @@ min-width: 25%;
   padding-bottom: 50px;
 }
 
-.top-bar.expanded .title-area {
+/*.top-bar.expanded .title-area {
   height: 65px;
-}
+}*/
+
+/*.top-bar-section ul.right {
+  height:65px!important;
+  }*/
+
+/*media="screen"
+.top-bar .title-area {
+  height: 65px;
+}*/

@@ -35,6 +35,7 @@ h1, h2, h3, h4 {
 
 .top-bar {
   background-color: rgba(0,0,0,0.0)
+  height:65px;
 }
 
 .top-bar-section ul {

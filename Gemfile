@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.0.0'
+
 
 gem 'rails', '3.2.16'
 
@@ -43,3 +43,5 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 
 # To use debugger
 # gem 'debugger'
+
+ruby '2.0.0'

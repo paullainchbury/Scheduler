@@ -35,7 +35,7 @@ h1, h2, h3, h4 {
 
 .top-bar {
   background-color: rgba(0,0,0,0.0);
-  height:65px;
+  height: 65px;
 }
 
 .top-bar-section ul {
@@ -71,10 +71,6 @@ border-style: none;
   max-width: 100%;
 }
 
-/*.right {
-  width: 25%;
-}*/
-
 .top-bar-section ul.right {
 background-color: rgba(255,255,255,0.8);
 min-width: 25%;
@@ -86,4 +82,8 @@ min-width: 25%;
   background-color: rgba(255,255,255,0.6);
   padding-left: 35px;
   padding-bottom: 50px;
+}
+
+.top-bar.expanded .title-area {
+  height: 65px;
 }

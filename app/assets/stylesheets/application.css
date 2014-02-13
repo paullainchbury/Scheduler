@@ -15,11 +15,11 @@
  */
 
  body {
-  background-color: #34282C;
-  background-image: url('blackboard.jpg');
-  background-repeat:no-repeat;
-  padding-bottom: 150px;
-  background-size: initial;
+  background-color: whitesmoke;
+  /*background-image: url('blackboard.jpg');*/
+  /*background-repeat:no-repeat;*/
+  /*padding-bottom: 150px;
+  background-size: initial;*/
 }
 
 .name h1 a {
@@ -79,20 +79,25 @@ min-width: 25%;
 .content {
   margin-top: 30px;
   padding-top: 10px;
-  background-color: rgba(255,255,255,0.6);
-  padding-left: 35px;
+  /*background-color: rgba(255,255,255,0.6);*/
+  /*padding-left: 35px;*/
   padding-bottom: 50px;
 }
 
-/*.top-bar.expanded .title-area {
-  height: 65px;
-}*/
+.top-bar .toggle-topbar.menu-icon a {
+text-indent: 0px;
+width: 34px;
+height: 34px;
+line-height: 33px;
+padding: 0;
+color: black;
+}
 
-/*.top-bar-section ul.right {
-  height:65px!important;
-  }*/
+.top-bar-section ul li > a {
+color: white;
+}
 
-/*media="screen"
-.top-bar .title-area {
-  height: 65px;
-}*/
+@media only screen and (min-width: 940px) {
+  .top-bar-section ul li > a {
+    color:black;
+  }

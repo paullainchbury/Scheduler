@@ -13,7 +13,14 @@
 //= require jquery
 //= require jquery_ujs
 //= require foundation
-//= require jquery.ui.datepicker
+//= require picker
 //= require_tree .
 
+
+
+
 $(function(){ $(document).foundation(); });
+
+$(document).ready( function() {
+  $('.datepicker').pickadate()
+});

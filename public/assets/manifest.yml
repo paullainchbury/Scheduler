@@ -27,10 +27,10 @@ table.jpg: table-ad9041d2ee5ed34c9165770a3e985cc5.jpg
 table/index.jpg: table-ad9041d2ee5ed34c9165770a3e985cc5.jpg
 whiteboard.jpg: whiteboard-b1dd5b9dfe37bfb47573be475a3f125a.jpg
 whiteboard/index.jpg: whiteboard-b1dd5b9dfe37bfb47573be475a3f125a.jpg
-application.js: application-e62e75efd0f29dd7b5fe6d474f8a1c77.js
-application/index.js: application-e62e75efd0f29dd7b5fe6d474f8a1c77.js
-application.css: application-3d82d802c3640b920bfffb80dd3ecd85.css
-application/index.css: application-3d82d802c3640b920bfffb80dd3ecd85.css
+application.js: application-9b98ae2a6cd9011496646c31cccfd3f2.js
+application/index.js: application-9b98ae2a6cd9011496646c31cccfd3f2.js
+application.css: application-88180dae4f01cf6f63ab6da1e4da7f5b.css
+application/index.css: application-88180dae4f01cf6f63ab6da1e4da7f5b.css
 jquery.min.map: jquery.min-388372ef65cc311f6a3df4a6ceac8d22.map
 jquery/index.min.map: jquery.min-388372ef65cc311f6a3df4a6ceac8d22.map
 jquery-ui/animated-overlay.gif: jquery-ui/animated-overlay-602eee4c79a4796b02bb6442948c9e28.gif

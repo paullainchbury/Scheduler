@@ -58,14 +58,14 @@
       <!-- Left Nav Section -->
       <ul class="left">
         <% if can? :manage, @classroom %>
-        <li class="menu1"><%= link_to 'Classrooms', classrooms_path %></li>
+        <li class="menu1"><%= link_to 'Rooms', classrooms_path %></li>
         <% end %>
         <li class="menu1"><%= link_to 'Courses', courses_path %></li>
         <% if can? :manage, @booking %>
         <li class="menu1"><%= link_to 'Classes', bookings_path %></li>
         <% end %>
         <% if current_user && current_user.admin? %>
-        <li class="menu1"><%= link_to 'Manage Users', users_path %></li>
+        <li class="menu1"><%= link_to 'Users', users_path %></li>
         <% end %>
         <% if current_user %>
         <li class="menu1"><%= link_to 'My profile', user_path(current_user) %></li>
@@ -94,7 +94,7 @@
 
 
 
-        <div class='large-3 columns'>
+        <div class='large-3 columns sideColumn'>
           <% if current_user %>
           <p>Hello <%=current_user.email %></p>
           <% end %>

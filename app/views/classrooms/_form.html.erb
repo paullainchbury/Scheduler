@@ -11,24 +11,103 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
+  <div class="row">
+      <div class="large-6 columns">
+        <div class="field">
+          <%= f.label :name %><br />
+          <%= f.text_field :name %>
+        </div>
+      </div>
+      <div class="large-6 columns"></div>
   </div>
-  <div class="field">
-    <%= f.label :capacity %><br />
-    <%= f.number_field :capacity %>
+
+  <div class="row">
+      <div class="large-3 columns">
+        <div class="field">
+          <%= f.label :capacity %><br />
+          <%= f.number_field :capacity %>
+        </div>
+      </div>
+      <div class="large-9 columns"></div>
   </div>
-  <div>
 
-<!-- The following two fields are for testing only and need to be removed. -->
+  <!-- Experimenting with new form -->
 
-
-    <input type="date" value="" placeholder="This is the HTML5 date…" name="html_date">
-
-    <input type="time" name="time_experiment" />
-
+  <div class="row">
+      <div class="large-3 columns">
+        <div class="field">
+          <%= f.label "Start date" %>
+          <input type="date" value="" placeholder="This is the HTML5 date…" name="start_date">
+        </div>
+      </div>
+      <div class="large-3 columns">
+        <div class="field">
+          <%= f.label "End date" %>
+          <input type="date" value="" placeholder="This is the HTML5 date…" name="end_date">
+        </div>
+      </div>
+      <div class="large-6 columns"></div>
   </div>
+
+
+
+<div id="Monday">
+  <h3>Monday</h3>
+  <div class="row">
+  <div class="large-6 columns">
+    <div class="row">
+      <div class="small-6 columns">
+        <div class="field">
+          <%= f.label "Begin" %><br />
+          <input type="time" name="mon_start" />
+        </div>
+      </div>
+      <div class="small-6 columns">
+        <div class="field">
+          <%= f.label "Finish" %><br />
+          <input type="time" name="mon_end" />
+        </div>
+      </div>
+      <div class="large-8 columns"></div>
+    </div>
+  </div>
+  <div class="large-6 columns"></div>
+  </div>
+</div>
+
+<div id="Tuesday">
+  <h3>Tuesday</h3>
+  <div class="row">
+  <div class="large-6 columns">
+    <div class="row">
+      <div class="small-6 columns">
+        <div class="field">
+          <%= f.label "Begin" %><br />
+          <input type="time" name="tues_start" />
+        </div>
+      </div>
+      <div class="small-6 columns">
+        <div class="field">
+          <%= f.label "Finish" %><br />
+          <input type="time" name="tues_end" />
+        </div>
+      </div>
+      <div class="large-8 columns"></div>
+    </div>
+  </div>
+  <div class="large-6 columns"></div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+  
+  
   <div class="actions">
     <%= f.submit %>
   </div>

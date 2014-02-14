@@ -30,7 +30,8 @@ class CoursesController < ApplicationController
   end
 
   def create
-    
+    # d = Date.strptime(params[:testing_date], "%d %B, %Y")
+    # binding.pry
     @course = Course.new(params[:course])
     if @course.save
       redirect_to @course, notice: 'Course was successfully created.'

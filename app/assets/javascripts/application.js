@@ -21,6 +21,6 @@
 
 $(function(){ $(document).foundation(); });
 
-$(document).ready( function() {
-  $('.datepicker').pickadate()
-});
+// $(document).ready( function() {
+//   $('.timepicker').pickatime()
+// });

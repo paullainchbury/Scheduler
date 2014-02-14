@@ -21,6 +21,7 @@
   <%= label_tag(:instructor_ids, "Instructor:") %>
   <%= f.collection_select(:instructor_ids, User.all(:order => 'name'), :id, :name, { :prompt => 'Select Instructor' } ) %>
 
+
   </div>
 </div>
 
@@ -34,9 +35,13 @@
     <%= f.label :start %>
     <%= f.date_select :start %>
 
+    <!-- Need to add HTML5 date select here!! -->
   
     <%= f.label :endtime %>
     <%= f.date_select :endtime %>
+
+    <input type="time" name="time_experiment" />
+    
   </div>
 </div>
 

@@ -42,11 +42,6 @@ load_and_authorize_resource
   # POST /classrooms.json
   def create
     @classroom = Classroom.new(params[:classroom])
-    d = Date.strptime(params[:testing_date], "%d %B, %Y")
-    binding.pry
-
-
-
     respond_to do |format|
       if @classroom.save
         format.html { redirect_to @classroom, notice: 'Classroom was successfully created.' }

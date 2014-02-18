@@ -1,0 +1,26 @@
+%h1 Listing bookings
+.row
+  %div.large-10.columns
+    %table
+      %tr
+        %th Course
+        %th Start
+        %th End
+        %th Classroom
+        %th
+        %th
+      - @bookings.each do |booking|
+        %tr
+          %td= booking.course.name if booking.course != nil
+          %td= booking.start.strftime("%A, %d/%m/%y - %I:%M %p")
+          %td= booking.endtime.strftime("%A, %d/%m/%y - %I:%M %p")
+          %td= booking.classroom.name if booking.classroom != nil
+          %td= link_to 'Show', booking
+          - if can? :update, @booking 
+            %td= link_to 'Edit', edit_booking_path(booking)
+          - if can? :destroy, @booking
+            %td= link_to 'Destroy', booking, method: :delete, data: { confirm: 'Are you sure?' }
+- if can? :create, @booking
+  = link_to "New Booking", new_booking_path
+
+

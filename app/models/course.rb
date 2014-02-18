@@ -27,7 +27,6 @@ class Course < ActiveRecord::Base
     # Destroy existing bookings for this course.
     Booking.for_course(self.id).destroy_all
     @thebookings = []
-
     start1 = self.start.beginning_of_day
     end1 = self.endtime.end_of_day
 

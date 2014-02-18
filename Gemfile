@@ -10,6 +10,8 @@ gem 'pg'
 gem 'pry-byebug'
 gem 'cancan'
 gem 'ransack'
+gem 'haml'
+gem 'haml-rails'
 
 # Heroku instructions say to install the following gem
 gem 'rails_12factor', group: :production
@@ -22,6 +24,7 @@ group :assets do
   gem 'zurb-foundation'
   gem 'uglifier', '>= 1.0.3'
   gem 'jquery-ui-rails'
+  gem 'modernizr-rails'
 end
 
 gem 'jquery-rails'

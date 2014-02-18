@@ -30,24 +30,88 @@
 <div class="row">
   <div class="large-6 columns">
     <%= f.label :name %>
-    <%= f.text_field :name %>
-  
-    <%= f.label :start %>
-    <%= f.date_select :start %>
-
-    <!-- Need to add HTML5 date select here!! -->
-  
-    <%= f.label :endtime %>
-    <%= f.date_select :endtime %>
+    <%= f.text_field :name, class: "fff" %>
 
     <input type="time" name="time_experiment" />
     
   </div>
 </div>
 
-<h3> I only want to show the days which fall over the course duration!</h3>
+<!-- Start of form experimentation -->
 
-<!-- Start time -->
+<div class="row">
+  <div class="large-6 columns">
+    <div class="row">
+      <div class="small-6 columns">
+        <div class="field">
+          <%= f.label "Start date" %>
+          <input type="date" value="" name="start_date">
+        </div>
+      </div>
+      <div class="small-6 columns">
+        <div class="field">
+          <%= f.label "End date" %>
+          <input type="date" name="end_date" class="end_date">
+        </div>
+      </div>
+      </div>
+      <div class="large-8 columns"></div>
+    </div>
+  </div>
+  <div class="large-6 columns"></div>
+
+  <!-- Experimenting with new form -->
+
+
+<div id="Monday">
+  <h3>Monday</h3>
+  <div class="row">
+  <div class="large-6 columns">
+    <div class="row">
+      <div class="small-6 columns">
+        <div class="field">
+          <%= f.label "Begin" %>
+          <input type="time" name="mon_start" />
+        </div>
+      </div>
+      <div class="small-6 columns">
+        <div class="field">
+          <%= f.label "Finish" %>
+          <input type="time" name="mon_end" />
+        </div>
+      </div>
+      <div class="large-8 columns"></div>
+    </div>
+  </div>
+  <div class="large-6 columns"></div>
+  </div>
+</div>
+
+<div id="Tuesday">
+  <h3>Tuesday</h3>
+  <div class="row">
+  <div class="large-6 columns">
+    <div class="row">
+      <div class="small-6 columns">
+        <div class="field">
+          <%= f.label "Begin" %>
+          <input type="time" name="tues_start" />
+        </div>
+      </div>
+      <div class="small-6 columns">
+        <div class="field">
+          <%= f.label "Finish" %>
+          <input type="time" name="tues_end" />
+        </div>
+      </div>
+      <div class="large-8 columns"></div>
+    </div>
+  </div>
+  <div class="large-6 columns"></div>
+  </div>
+</div>
+
+<!-- End of form experimentation -->
 
 
 <div class="row">

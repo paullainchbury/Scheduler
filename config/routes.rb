@@ -1,14 +1,20 @@
 Scheduler::Application.routes.draw do
   
-    get'signup', to: 'users#new', as: 'signup'
-    get'login', to: 'sessions#new', as: 'login'
-    get'logout', to: 'sessions#destroy', as: 'logout'
+  devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks" }
 
-  resources :users
+  devise_scope :user do
+    # get "signup", to: "devise/sessions#new"
+    get'signup', to: 'devise/registrations#new', as: 'signup'
+    get'login', to: 'devise/sessions#new', as: 'login'
+    get'logout', to: 'devise/sessions#destroy', as: 'logout'
+  end
+
+  get'/users', to: 'users#index', as: :users
+  get'/profile', to: 'users#show', as: :profile
+
   resources :classrooms
   resources :courses
   resources :bookings
-  resources :sessions
 
   get'/enrolment/:user_id', to: 'courses_users#new', as: :enrolment
 

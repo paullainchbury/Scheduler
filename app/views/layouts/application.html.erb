@@ -69,7 +69,7 @@
         <li class="menu1"><%= link_to 'Users', users_path %></li>
         <% end %>
         <% if current_user %>
-        <li class="menu1"><%= link_to 'My profile', user_path(current_user) %></li>
+        <li class="menu1"><%= link_to 'My Profile', profile_path %></li>
         <% end %>
       </ul>
     </section>
@@ -83,11 +83,8 @@
 
       <div class='row'>
         <div class='large-9 columns'>
-          <% flash.each do |name, msg| %>
-          <div class="flash-message flash-message-<%= name %>">
-            <%= msg %>
-          </div>
-          <% end %>
+          <p class="notice"><%= notice %></p>
+          <p class="alert"><%= alert %></p>
           <div class='large-6-columns content'>
           <%= yield %>
           </div>

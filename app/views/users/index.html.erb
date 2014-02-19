@@ -4,7 +4,7 @@
   <tr>
     <th>Name</th>
     <th>Email</th>
-    <th></th>
+    <th>Actions</th>
     <th></th>
     <th></th>
   </tr>
@@ -14,14 +14,10 @@
   <tr>
     <td><%= user.name %></td>
     <td><%= user.email %></td>
-    <td><%= link_to 'Show', user %></td>
-    <td><%= link_to 'Edit', edit_user_path(user) %></td>
-    <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td>Show | Edit | Delete </td>
   </tr>
   <% end %>
 <% end %>
 </table>
 
 <br />
-
-<%= link_to 'New User', new_user_path %>

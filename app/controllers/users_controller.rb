@@ -12,7 +12,7 @@ load_and_authorize_resource
   # GET /users/1
   # GET /users/1.json
   def show
-    @user = User.find(params[:id])
+    @user = current_user
     @courses = @user.courses_as_student
     @courses_as_instructor = @user.courses_as_instructor
     @bookings = Booking.where('bookings.start > ?', Time.zone.now).where(course_id: @user.courses_as_student).order(:start)

@@ -12,6 +12,8 @@ gem 'cancan'
 gem 'ransack'
 gem 'haml'
 gem 'haml-rails'
+gem 'devise' 
+gem 'omniauth-facebook'
 
 # Heroku instructions say to install the following gem
 gem 'rails_12factor', group: :production
